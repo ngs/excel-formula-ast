@@ -46,6 +46,13 @@ describe('cell ranges', function() {
     deepStrictEqual(stringify(tree), "'Foo ! Bar'!A1:A4");
   });
 
+  it("'Foo ! Bar'!A1:'Foo ! Bar'!A4", function() {
+    const tree = buildTree(tokenize("'Foo ! Bar'!A1:'Foo ! Bar'!A4"));
+
+    deepStrictEqual(tree, builder.cellRange(builder.cell('Foo ! Bar!A1'), builder.cell('Foo ! Bar!A4')));
+    deepStrictEqual(stringify(tree), "'Foo ! Bar'!A1:'Foo ! Bar'!A4");
+  });
+
   it('$A1:A$4', function() {
     const tree = buildTree(tokenize('$A1:A$4'));
 
